@@ -198,6 +198,31 @@ It contains the commands, supported formats, provider behavior, model caching ru
 
 After installation, the file is available at `node_modules/bgcut/skills/bgcut/SKILL.md`.
 
+## Repository layout
+
+The repository is one package with explicit runtime boundaries. See [`docs/README.md`](docs/README.md) for the full map.
+
+```text
+src/
+  app/       Solid UI and site shell
+  engine/    inference engine and model/image primitives
+  cli/       command-line app and loopback web server
+  node/      public Node API and native runtime
+  shared/    code shared across runtime boundaries
+  worker/    Cloudflare Worker
+
+scripts/
+  build/       build and packaging tasks
+  cloudflare/  Cloudflare runtime/deploy support
+  test/        package-level smoke tests
+  shared/      script-only shared helpers
+
+docs/
+  engineering/  benchmarks, graph-capture notes, roadmap
+  operations/   deployment and release procedures
+  images/       README/site documentation assets
+```
+
 ## Development
 
 Install and start the browser app:
@@ -234,7 +259,7 @@ bun run cloudflare:runtime:smoke
 bun run cloudflare:dev
 ```
 
-See [`DEPLOYING.md`](DEPLOYING.md) for the exact local checks, one-time R2 setup, and production command.
+See [`docs/operations/deploying.md`](docs/operations/deploying.md) for the exact local checks, one-time R2 setup, and production command.
 
 ## Releases
 
@@ -242,7 +267,7 @@ Releases run through `.github/workflows/release.yml` and npm Trusted Publishing.
 
 Stable versions publish to npm `latest` and create normal GitHub releases. Prerelease versions publish to their matching prerelease tag, such as `beta`.
 
-See [`RELEASING.md`](RELEASING.md) for the release process and [`CHANGELOG.md`](CHANGELOG.md) for release history.
+See [`docs/operations/releasing.md`](docs/operations/releasing.md) for the release process and [`CHANGELOG.md`](CHANGELOG.md) for release history.
 
 ## Model
 
@@ -256,7 +281,7 @@ See [`RELEASING.md`](RELEASING.md) for the release process and [`CHANGELOG.md`](
 
 ## Project notes
 
-[`BENCHMARKS.md`](BENCHMARKS.md) records measured runtime results. [`GRAPH_CAPTURE.md`](GRAPH_CAPTURE.md) records the graph-capture work behind the current browser fast path. [`IMPROVEMENTS.md`](IMPROVEMENTS.md) tracks planned engine and editor work. [`DEPLOYING.md`](DEPLOYING.md) covers the Cloudflare web deployment.
+[`docs/engineering/benchmarks.md`](docs/engineering/benchmarks.md) records measured runtime results. [`docs/engineering/graph-capture.md`](docs/engineering/graph-capture.md) records the graph-capture work behind the current browser fast path. [`docs/engineering/roadmap.md`](docs/engineering/roadmap.md) tracks planned engine and editor work. [`docs/operations/deploying.md`](docs/operations/deploying.md) covers the Cloudflare web deployment.
 
 ## Privacy
 
